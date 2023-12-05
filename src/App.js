@@ -14,15 +14,21 @@ const initialItems = [
 function App() {
   const [items, setItems] = useState([]);
 
+  //ADD ITEM TO THE LIST
   const handleAddItems = (obj) => {
     setItems([...items, obj]);
+  };
+
+  //DELETE ITEM FROM THE LIST
+  const handleOnDelete = (obj) => {
+    setItems(items.filter((item) => item.id !== obj.id));
   };
 
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} />
+      <PackingList items={items} onDelete={handleOnDelete} />
       <Stats />
     </div>
   );
