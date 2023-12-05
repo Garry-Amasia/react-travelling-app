@@ -17,6 +17,8 @@ export const Form = ({ onAddItems }) => {
       id: Date.now(),
     };
 
+    console.log(newItem);
+
     onAddItems(newItem);
 
     // console.log(newItem);

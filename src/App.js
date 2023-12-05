@@ -5,31 +5,38 @@ import { Logo } from "./components/Logo";
 import { PackingList } from "./components/PackingList";
 import { Stats } from "./components/Stats";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Charger", quantity: 1, packed: true },
-];
-
 function App() {
   const [items, setItems] = useState([]);
 
   //ADD ITEM TO THE LIST
   const handleAddItems = (obj) => {
-    setItems([...items, obj]);
+    setItems((current) => [...current, obj]);
   };
 
   //DELETE ITEM FROM THE LIST
   const handleOnDelete = (obj) => {
-    setItems(items.filter((item) => item.id !== obj.id));
+    setItems((current) => current.filter((item) => item.id !== obj.id));
+  };
+
+  //TOGGLE CHECKBOX
+  const handleToggleItem = (obj) => {
+    setItems((current) =>
+      current.map((item) =>
+        item.id === obj.id ? { ...item, packed: !item.packed } : item
+      )
+    );
   };
 
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} onDelete={handleOnDelete} />
-      <Stats />
+      <PackingList
+        items={items}
+        onDelete={handleOnDelete}
+        onToggle={handleToggleItem}
+      />
+      <Stats items={items} />
     </div>
   );
 }
