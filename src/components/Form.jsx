@@ -52,4 +52,4 @@ export const Form = ({ onAddItems }) => {
 
 //we can use onClick event on button, but it wont work when we press enter, it ONLY work on which button is pressed
 
-//onChange={(e) => setQuantity(e.target.value)} inside seleect element, the value come from option!! and the value always string, so we need to convert it to number
+//onChange={(e) => setQuantity(e.target.value)} inside select element, the value come from option!! and the value always string, so we need to convert it to number
